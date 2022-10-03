@@ -1,5 +1,6 @@
-import clsx from 'clsx';
 import { ImSpinner2 } from 'react-icons/im';
+
+import clsxm from '@/lib/clsxm';
 
 const enum ButtonVariant {
   primary,
@@ -25,12 +26,12 @@ const Button = ({
   ...rest
 }: ButtonProps) => {
   const disabled = isLoading || buttonDisabled;
+
   return (
     <button
       type='button'
       disabled={disabled}
-      className={clsx(
-        className,
+      className={clsxm(
         'inline-flex items-center rounded px-4 py-2 font-semibold',
         'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
         'shadow-sm',
@@ -46,14 +47,14 @@ const Button = ({
             'disabled:bg-primary-300 disabled:hover:bg-primary-300 disabled:hover:text-black',
           ],
           variant === 'outline' && [
-            'text-primary-50',
+            'text-dark dark:text-primary-50',
             'border border-primary-500',
             isDarkBg
               ? 'hover:bg-primary-700 hover:text-primary-50 active:bg-primary-600 disabled:bg-transparent'
               : 'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
           ],
           variant === 'ghost' && [
-            'text-primary-50',
+            'text-dark dark:text-primary-50',
             'shadow-none',
             isDarkBg
               ? 'hover:bg-primary-700 hover:text-primary-50 active:bg-primary-600 disabled:bg-transparent'
@@ -73,13 +74,14 @@ const Button = ({
         ],
         'disabled:cursor-not-allowed',
         isLoading &&
-          'relative !cursor-wait !text-transparent !transition-none hover:!text-transparent'
+          'relative !cursor-wait !text-transparent !transition-none hover:!text-transparent',
+        className
       )}
       {...rest}
     >
       {isLoading && (
         <div
-          className={clsx(
+          className={clsxm(
             'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
             {
               'text-white': variant === 'dark' || variant === 'primary',
